@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source ./canvas-config
+set -o nounset
+
+echo 'Going to create  assignments' >&2;
+
+for num in {1..10}; do
+ curl --silent -X POST "${URL}/api/v1/courses/$COURSE_ID/assignments" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer $TOKEN" \
+     --data '{
+          "assignment": {
+                "name": "Recite verse '"$num"'",
+                "submission_types": ["none"],
+                "points_possible": '"$((30+num*2))"',
+                "grading_type": "points",
+                "due_at": "2021-10-29T18:48:00Z",
+                "published": true
+           }
+     }' > /dev/null;
+done
+
+echo 'Created ALL assignments' >&2;

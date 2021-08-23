@@ -1,0 +1,2 @@
+#!/bin/bash
+grep -Eo --color '<(.*?)>; rel="next"' | sed 's/.*current.*<//;s/>.*//'

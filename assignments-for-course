@@ -1,0 +1,19 @@
+#!/bin/bash
+
+source ./canvas-config
+
+page_url="${URL}/api/v1/courses/${COURSE_ID}/assignments?per_page=100"
+
+authorized_curl() {
+        curl -s -H "Authorization: Bearer ${TOKEN}" "$@"
+        #curl -H "Authorization: Bearer ${TOKEN}" "$@"
+}
+
+while :
+do 
+        authorized_curl "$page_url" | jq '.[].id'
+
+        page_url=$(authorized_curl -I "$page_url" | ./canvas-next-page)
+        if [ -z "$page_url" ]; then break
+        fi  
+done

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#stage
+#export URL=https://canvas-dev.starfishsolutions.com
+#export TOKEN=SCQCUwwz2bmEbqKSQazLlvPoTFA2plcv30wMVUcIRysypGgcUFZZclmySbpi3BCf
+#export COURSE_ID=8
+
+#EAB-beta instance
+export URL=https://eab.beta.instructure.com
+export TOKEN=15050~mu0uxsUePey3C9pqnn0PaNf42rMvbWWRcO1NZ8TPNMBhoJwtf8LojqFFCIGkTJ4N
+export COURSE_ID=181
+
+#local
+#export URL=http://192.168.1.229
+#export TOKEN=dXyVtUIX5KoXt7qcOjVnySVTEszHtoa2eDCe4JDUSUcxlrR6QmdQ8PcTNTLdc7RE
+#export COURSE_ID=1

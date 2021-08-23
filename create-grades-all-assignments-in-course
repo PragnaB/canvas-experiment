@@ -1,0 +1,20 @@
+#!/bin/bash
+
+source ./canvas-config
+
+echo 'Getting assignments and students for the course' >&2;
+assignmentIDs=$(./assignments-for-course)
+studentIds=$(./students-enrolled-in-course)
+
+echo 'Giving grades' >&2;
+
+for assignmentID in $assignmentIDs; do
+    while read id; do 
+	curl --silent "${URL}/api/v1/courses/${COURSE_ID}/assignments/${assignmentID}/submissions/update_grades" \
+	    -X POST \
+	    -F "grade_data[${id}][posted_grade]=$((1 + $RANDOM % 40))" \
+	    -H "Authorization: Bearer ${TOKEN}" > /dev/null
+    done <<<"$studentIds"
+done
+
+echo 'All done with grading students! Congrats!' >&2;
